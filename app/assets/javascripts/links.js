@@ -46,17 +46,17 @@ function submitViaAjax() {
 			}
 		};
 		
-		debugger;
 		console.log(data);
-
+		
 		$.ajax({
 			type: "POST",
 			url: url,
 			data: data,
 			headers: { 'Content-Type': 'application/json' },
 			success: function (response) {
-				var $div = $("div.comments ul");
-				$div.append(response)
+				var $ul = $("div.comments_section ul");
+				$ul.append(response)
+				
 			}
 		})
 		e.preventDefault();

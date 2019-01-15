@@ -19,7 +19,7 @@ class LinksController < ApplicationController
 		# @link = Link.find_by(id: params[:id])
     @comments = @link.comments
     @comment = Comment.new
-		render json: @link, status: 200
+		 render json: @link, status: 200
   end
 
   # GET /links/new

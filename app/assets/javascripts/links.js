@@ -19,7 +19,6 @@ function getLinkComments() {
 			dataType: 'json'
 		}).done(function (response) {
 
-			debugger;
 			$("div.comment").html(response)
 			var comment_section = document.querySelector('.comments_section')
 
@@ -111,7 +110,8 @@ Link.prototype.formatHtml = function () {
 	return (`
 		<div>
 			<a href=${this.url} target="_blank" style="font-size: 2em;">${this.title}</a><br>
-			<button class='load_comments' id=${this.id}>Show comments</button><br><hr>
+			<button class='load_comments' id=${this.id}>Show comments</button><br>
+			<p class="comments-section"></p><br><hr>
 		</div>
 	`)
 }

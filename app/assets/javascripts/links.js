@@ -34,18 +34,19 @@ function getLinkComments() {
 // Submit comment via AJAX
 
 function submitViaAjax() {
-	$("#new_comment").on("submit", function (e) {
+	$("#new_comment_button").on("click", function (e) {
 		url = this.action
-		var commentText = document.getElementById("comment_body").innerHTML
-		var myJSON = JSON.stringify(commentText);
-
+		//var commentText = document.getElementById("comment_body").innerHTML
+		//var myJSON = JSON.stringify(commentText);
+		
 		data = {
 			'authenticity_token': $("input[name='authenticity_token']").val(),
 			'comment': {
-				'content': $(myJSON).val()
+				'content': $("#comment_body").val()
 			}
 		};
-
+		
+		debugger;
 		console.log(data);
 
 		$.ajax({
@@ -88,15 +89,12 @@ function listenForGetLink() {
 		fetch(url + '.json')
 			.then(res => res.json()
 				.then(data => {
-					data.map((link, index) => {
+					data.forEach((link) => {
 						let newLink = new Link(link)
 						let linkHTML = newLink.formatHtml()
-						// document.querySelector('div#links-index').append(linkHTML)
-						// document.querySelector('div#links-index').innerHTML += linkHTML
 						$('div#links-index').append(linkHTML)
 					})
 					getLinkComments();
-					// document.getElementById('random-link-spot').innerHTML = linkHTML
 				}))
 	})
 }

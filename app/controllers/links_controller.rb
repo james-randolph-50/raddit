@@ -16,10 +16,14 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
 	def show
-		# @link = Link.find_by(id: params[:id])
     @comments = @link.comments
-    @comment = Comment.new
-		# render json: @link, status: 200
+
+    respond_to do |f|
+			f.html {render :show}
+			f.json {render json: @link}
+		end
+    # @comment = Comment.new
+	 # render json: @link, status: 200
   end
 
   # GET /links/new

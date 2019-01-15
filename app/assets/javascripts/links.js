@@ -15,17 +15,17 @@ function getLinkComments() {
 		// http://localhost:3000/links/:id/comments
 
 		$.ajax({
-			url: `http://localhost:3000/links/${id}/comments`,
+			url: `http://localhost:3000/links/${id}`,
 			method: 'get',
 			dataType: 'json'
 		}).done(function (response) {
 
-			$("div.comment").html(response)
+			//$("div.comment").html(response)
 			var comment_section = document.querySelector('.comments_section')
 
-			response.forEach(function (comment) {
-				var comment_body = `${comment.body}`
-				comment_section.innerHTML += `${comment_body} <br> `
+			response.comments.forEach(function (comment) {
+				//var comment_body = `${comment.body}`
+				comment_section.innerHTML += `${comment.body} <br> `
 			});
 		})
 	})

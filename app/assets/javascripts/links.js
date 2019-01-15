@@ -109,7 +109,8 @@ class Link {
 Link.prototype.formatHtml = function () {
 	return (`
 		<div>
-			<a href=${this.url} style="font-size: 2em;">${this.title}</a><br>
+			<a href="http://localhost:3000/links/${this.id}" style="font-size: 2em;">${this.title}</a>
+
 			<div class="comments_section"></div><br>
 			<button class='load_comments' id=${this.id}>Show comments</button><br><hr>
 		</div>

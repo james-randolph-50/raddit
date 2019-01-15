@@ -45,6 +45,8 @@ $(function () {
 			}
 		};
 
+		console.log(data);
+
 		$.ajax({
 			type: "POST",
 			url: url,

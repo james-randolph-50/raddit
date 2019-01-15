@@ -1,19 +1,25 @@
 $(function () {
+	console.log('links.js loaded ...');
 	listenForGetLink();
+	// getLinkComments();
 })
 
 // Show comments on click
 
-$(function () {
-	$("a.load_comments").on("click", function (e) {
+function getLinkComments() {
+	$("button.load_comments").on("click", function (e) {
 		e.preventDefault();
 
+		let id = this.id
+		// http://localhost:3000/links/:id/comments
+
 		$.ajax({
-			url: this.href,
+			url: `http://localhost:3000/links/${id}/comments`,
 			method: 'get',
 			dataType: 'json'
 		}).done(function (response) {
 
+			debugger;
 			$("div.comment").html(response)
 			var comment_section = document.querySelector('.comments_section')
 
@@ -23,7 +29,7 @@ $(function () {
 			});
 		})
 	})
-});
+};
 
 // Submit comment via AJAX
 
@@ -72,30 +78,25 @@ $(function () {
 });
 
 
-// Fetch a random link
+// Fetch all links
 function listenForGetLink() {
-	$('#random-link').on('click', function (e) {
+	$('a#show-links').on('click', function (e) {
 		e.preventDefault()
-		let href = this.href
-		getLinks(href)
-	});
-}
-
-function getLinks(url) {
-	fetch(url + '.json')
-		.then(res => res.json()
-			.then(data => {
-
-				// data.map((link, index)=>{
-				// 	let newLink = new Link(link)
-				// })
-
-				const link = new Link(data[0])
-				const linkHTML = link.formatHtml()
-
-				document.getElementById('random-link-spot').innerHTML = linkHTML
-
-			}))
+		let url = this.href
+		fetch(url + '.json')
+			.then(res => res.json()
+				.then(data => {
+					data.map((link, index) => {
+						let newLink = new Link(link)
+						let linkHTML = newLink.formatHtml()
+						// document.querySelector('div#links-index').append(linkHTML)
+						// document.querySelector('div#links-index').innerHTML += linkHTML
+						$('div#links-index').append(linkHTML)
+					})
+					getLinkComments();
+					// document.getElementById('random-link-spot').innerHTML = linkHTML
+				}))
+	})
 }
 
 class Link {
@@ -108,9 +109,9 @@ class Link {
 
 Link.prototype.formatHtml = function () {
 	return (`
-	<div>
-		<p>${this.title}></p>
-		<a href=${this.url}></a>
-	</div>
+		<div>
+			<a href=${this.url}>${this.title}</a><br>
+			<button class='load_comments' id=${this.id}>Show comments</button>
+		</div>
 	`)
 }

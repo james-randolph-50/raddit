@@ -6,15 +6,20 @@ class LinksController < ApplicationController
   def index
     @links = Link.all
 
+		respond_to do |f|
+			f.html {render :index}
+			f.json {render json: @links}
+		end
      #render json: @links, status: 200
   end
 
   # GET /links/1
   # GET /links/1.json
-  def show
-    render json: @link, status: 200
+	def show
+		# @link = Link.find_by(id: params[:id])
     @comments = @link.comments
     @comment = Comment.new
+		render json: @link, status: 200
   end
 
   # GET /links/new

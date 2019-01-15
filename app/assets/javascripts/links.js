@@ -1,6 +1,7 @@
 $(function () {
 	console.log('links.js loaded ...');
 	listenForGetLink();
+	submitViaAjax()
 	// getLinkComments();
 })
 
@@ -32,7 +33,7 @@ function getLinkComments() {
 
 // Submit comment via AJAX
 
-$(function () {
+function submitViaAjax() {
 	$("#new_comment").on("submit", function (e) {
 		url = this.action
 		var commentText = document.getElementById("comment_body").innerHTML
@@ -59,7 +60,7 @@ $(function () {
 		})
 		e.preventDefault();
 	})
-});
+};
 
 // Show a User's Links
 

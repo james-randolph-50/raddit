@@ -109,9 +109,9 @@ class Link {
 Link.prototype.formatHtml = function () {
 	return (`
 		<div>
-			<a href=${this.url} target="_blank" style="font-size: 2em;">${this.title}</a><br>
-			<button class='load_comments' id=${this.id}>Show comments</button><br>
-			<p class="comments-section"></p><br><hr>
+			<a href=${this.url}>${this.title}</a><br>
+			<div class="comments_section"></div>
+			<button class='load_comments' id=${this.id}>Show comments</button>
 		</div>
 	`)
 }

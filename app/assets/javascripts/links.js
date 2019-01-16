@@ -37,32 +37,30 @@ function submitViaAjax() {
 	$("#new_comment_button").on("click", function (e) {
 		e.preventDefault();
 
-		// debugger
+		// url = this.action
+		
 		url = $(this.form).attr('action')
+		debugger
 		//var commentText = document.getElementById("comment_body").innerHTML
-		//var myJSON = JSON.stringify(commentText);
 		
 		data = {
-			'authenticity_token': $("input[name='authenticity_token']").val(),
 			'comment': {
 				'content': $("#comment_body").val()
 			}
 		};
-
-		//serializeddata = data.serialize()
+		//var myJSON = JSON.stringify(data);
 		
 		console.log(data);
 		
 		$.ajax({
 			type: "POST",
-			url: $(this).parent("form").attr("action") + "?authenticity_token=" + $("input[name='authenticity_token']").val(), 
+			// url: $(this).parent("form").attr("action"),
 			// data:$(this).parent("form").serialize(),
 			dataType: "json",
-		//   url: url,
+			url: url,
 			data: data,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function (response) {
-				debugger
 				var $ul = $("div.comments_section ul");
 				$ul.append(response)
 				

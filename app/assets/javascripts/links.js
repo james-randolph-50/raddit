@@ -35,7 +35,10 @@ function getLinkComments() {
 
 function submitViaAjax() {
 	$("#new_comment_button").on("click", function (e) {
-		url = this.action
+		e.preventDefault();
+
+		// debugger
+		url = $(this.form).attr('action')
 		//var commentText = document.getElementById("comment_body").innerHTML
 		//var myJSON = JSON.stringify(commentText);
 		
@@ -45,21 +48,30 @@ function submitViaAjax() {
 				'content': $("#comment_body").val()
 			}
 		};
+
+		//serializeddata = data.serialize()
 		
 		console.log(data);
 		
 		$.ajax({
 			type: "POST",
-			url: url,
+			url: $(this).parent("form").attr("action") + "?authenticity_token=" + $("input[name='authenticity_token']").val(), 
+			// data:$(this).parent("form").serialize(),
+			dataType: "json",
+		//   url: url,
 			data: data,
-			headers: { 'Content-Type': 'application/json' },
+			// headers: { 'Content-Type': 'application/json' },
 			success: function (response) {
+				debugger
 				var $ul = $("div.comments_section ul");
 				$ul.append(response)
 				
 			}
+		}).done(function(response){
+			debugger
+			var $ul = $("div.comments_section ul");
+			$ul.append(response)
 		})
-		e.preventDefault();
 	})
 };
 

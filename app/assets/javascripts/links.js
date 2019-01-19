@@ -36,13 +36,9 @@ function getLinkComments() {
 function submitViaAjax() {
 	$("#new_comment_button").on("click", function (e) {
 		e.preventDefault();
-
-		// url = this.action
 		
 		url = $(this.form).attr('action')
-		debugger
-		//var commentText = document.getElementById("comment_body").value
-		
+				
 		data = {
 			'comment': {
 				'content': $("#comment_body").val()
@@ -50,14 +46,8 @@ function submitViaAjax() {
 		};
 		var myJSON = JSON.stringify(data);
 		
-		console.log(data);
-		console.log("Below should be the myJSON variable");
-		console.log(myJSON);
-		
 		$.ajax({
 			type: "POST",
-			// url: $(this).parent("form").attr("action"),
-			// data:$(this).parent("form").serialize(),
 			dataType: "json",
 			url: url,
 			data: myJSON,

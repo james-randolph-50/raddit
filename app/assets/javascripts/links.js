@@ -41,16 +41,18 @@ function submitViaAjax() {
 		
 		url = $(this.form).attr('action')
 		debugger
-		//var commentText = document.getElementById("comment_body").innerHTML
+		var commentText = document.getElementById("comment_body").innerHTML
 		
 		data = {
 			'comment': {
-				'content': $("#comment_body").val()
+				'content': commentText.val()
 			}
 		};
-		//var myJSON = JSON.stringify(data);
+		var myJSON = JSON.stringify(data);
 		
 		console.log(data);
+		console.log("Below should be the myJSON variable");
+		console.log(myJSON);
 		
 		$.ajax({
 			type: "POST",
@@ -58,7 +60,7 @@ function submitViaAjax() {
 			// data:$(this).parent("form").serialize(),
 			dataType: "json",
 			url: url,
-			data: data,
+			data: myJSON,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function (response) {
 				var $ul = $("div.comments_section ul");

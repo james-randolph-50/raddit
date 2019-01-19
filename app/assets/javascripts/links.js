@@ -41,11 +41,11 @@ function submitViaAjax() {
 		
 		url = $(this.form).attr('action')
 		debugger
-		var commentText = document.getElementById("comment_body").innerHTML
+		//var commentText = document.getElementById("comment_body").value
 		
 		data = {
 			'comment': {
-				'content': commentText.val()
+				'content': $("#comment_body").val()
 			}
 		};
 		var myJSON = JSON.stringify(data);

@@ -34,16 +34,10 @@
   <% end %>
 </h3>
 
-<!--<p>
-  <%= link_to "Load Comments", link_comments_path(@link), :class => "load_comments" %>
-</p>
- -->
 <div class="comments_section">
-   <%= render 'comments/comments' %>
+   <!-- <%= render 'comments/comments' %> -->
+   <%= render partial: 'comment', collections: @comments %>
 </div>
-
-<!--<div id="comments">
-</div> -->
 
 <%= simple_form_for [@link, Comment.new]  do |f| %>
   <div class="field">

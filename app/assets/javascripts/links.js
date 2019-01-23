@@ -45,14 +45,14 @@ function submitViaAjax() {
 			}
 		};
 		
-		$.myJSON = JSON.stringify(data);
+		//var myJSON = JSON.stringify(data);
 		
 		$.ajax({
 			type: "POST",
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			url: url,
-			data: myJSON,
+			data: data,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function (response) {
 				var $ul = $("div.comments_section ul");

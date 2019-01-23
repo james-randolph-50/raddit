@@ -38,13 +38,14 @@ function submitViaAjax() {
 		e.preventDefault();
 		
 		url = $(this.form).attr('action')
-				
+		
 		data = {
 			'comment': {
 				'content': $("#comment_body").val()
 			}
 		};
-		var myJSON = JSON.stringify(data);
+		
+		$.myJSON = JSON.stringify(data);
 		
 		$.ajax({
 			type: "POST",
@@ -56,7 +57,6 @@ function submitViaAjax() {
 			success: function (response) {
 				var $ul = $("div.comments_section ul");
 				$ul.append(response)
-				
 			}
 		}).done(function(response){
 			debugger

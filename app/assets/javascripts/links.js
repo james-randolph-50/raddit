@@ -34,10 +34,11 @@ function getLinkComments() {
 // Submit comment via AJAX
 
 function submitViaAjax() {
+	'use strict';
 	$("#new_comment_button").on("click", function (e) {
 		e.preventDefault();
 		
-		url = $(this.form).attr('action')
+		var url = $(this.form).attr('action')
 		
 		data = {
 			'comment': {
@@ -45,14 +46,14 @@ function submitViaAjax() {
 			}
 		};
 		
-		//var myJSON = JSON.stringify(data);
+		myJSON = JSON.stringify(data);
 		
 		$.ajax({
 			type: "POST",
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			url: url,
-			data: data,
+			data: myJSON,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function (response) {
 				var $ul = $("div.comments_section ul");

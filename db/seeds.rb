@@ -3,5 +3,5 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+   links = Link.create([{ title: 'First Link', url: 'https://www.facebook.com' }, { title: 'Another Link', url: 'https://www.twitter.com' }])
 #   Character.create(name: 'Luke', movie: movies.first)

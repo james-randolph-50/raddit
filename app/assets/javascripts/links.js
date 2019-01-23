@@ -8,6 +8,7 @@ $(function () {
 // Show comments on click
 
 function getLinkComments() {
+	'use strict';
 	$("button.load_comments").on("click", function (e) {
 		e.preventDefault();
 
@@ -34,12 +35,11 @@ function getLinkComments() {
 // Submit comment via AJAX
 
 function submitViaAjax() {
-	'use strict';
 	$("#new_comment_button").on("click", function (e) {
 		e.preventDefault();
 		
-		var url = $(this.form).attr('action')
-		
+		url = $(this.form).attr('action')
+		debugger;
 		data = {
 			'comment': {
 				'content': $("#comment_body").val()
@@ -55,12 +55,11 @@ function submitViaAjax() {
 			url: url,
 			data: myJSON,
 			// headers: { 'Content-Type': 'application/json' },
-			success: function (response) {
+			success: function(response) {
 				var $ul = $("div.comments_section ul");
 				$ul.append(response)
 			}
 		}).done(function(response){
-			debugger
 			var $ul = $("div.comments_section ul");
 			$ul.append(response)
 		})

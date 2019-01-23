@@ -34,57 +34,56 @@ function getLinkComments() {
 
 // Submit comment via AJAX
 
-// function submitViaAjax() {
-// 	$("#new_comment_button").on("click", function (e) {
-// 		e.preventDefault();
+function submitViaAjax() {
+	$("#new_comment_button").on("click", function (e) {
+		e.preventDefault();
 		
-// 		url = $(this.form).attr('action')
-// 		debugger;
-// 		data = {
-// 			'comment': {
-// 				'content': $("#comment_body").val()
-// 			}
-// 		};
+		url = $(this.form).attr('action')
+		debugger;
+		data = {
+			'comment': {
+				'content': $("#comment_body").val()
+			}
+		};
 		
-// 		myJSON = JSON.stringify(data);
+		myJSON = JSON.stringify(data);
 		
-// 		$.ajax({
-// 			type: "POST",
-// 			contentType: "application/json; charset=utf-8",
-// 			dataType: "json",
-// 			url: url,
-// 			data: myJSON,
-// 			// headers: { 'Content-Type': 'application/json' },
-// 			success: function(response) {
-// 				var $ul = $("div.comments_section ul");
-// 				$ul.append(response)
-// 			}
-// 		}).done(function(response){
-// 			var $ul = $("div.comments_section ul");
-// 			$ul.append(response)
-// 		})
-// 	})
-// };
+		$.ajax({
+			type: "POST",
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			url: url,
+			data: myJSON,
+			// headers: { 'Content-Type': 'application/json' },
+			success: function(response) {
+				var $ul = $("div.comments_section ul");
+				$ul.append(response)
+			}
+		})
+	})
+};
 
 // Other approach to submitting comments via AJAX
 
- $(function(){
-   $("#new_comment_button").on("submit", function(e){
+//  $(function(){
+//    $("#new_comment_button").on("click", function(e){
+// 	   e.preventDefault();
 
-     $.ajax({
-       type: ($("input[name='_method']").val() || this.method),
-       url: this.action,
-       data: $(this).serialize();,
-       success: function(response){
-         $("#comment_body").val("");
-         var $ul = $("div.comments_section ul")
-         $ul.append(response);
-       }
-	 });
+// 	url = $(this.form).attr('action')
+// 	debugger;
+//      $.ajax({
+//        type: POST,
+//        url: url,
+//        data: $(this).serialize();,
+//        success: function(response){
+//          $("#comment_body").val("");
+//          var $ul = $("div.comments_section ul")
+//          $ul.append(response);
+//        }
+// 	 });
 	 
-     e.preventDefault();
-   })
- });
+//    })
+//  });
 
 
 // Show a User's Links

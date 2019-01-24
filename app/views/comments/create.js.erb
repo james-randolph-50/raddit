@@ -1,2 +1,4 @@
+$("#comment_body").val("");
+var $ul = $("div.comments_section ul")
+$ul.append("<%=j(render('comments/comment', :comment => @comment)) %>");
 
-$('ul.comments_section').append('<%= j render @comment %>') )

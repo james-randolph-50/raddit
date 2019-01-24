@@ -39,15 +39,15 @@ function submitViaAjax() {
 		e.preventDefault();
 		
 		url = $(this.form).attr('action')
-		debugger;
+		//debugger;
 		data = {
 			'comment': {
-				'content': $("#comment_body").val()
+				'body': $("#comment_body").val()
 			}
 		};
 		
 		myJSON = JSON.stringify(data);
-		
+		//debugger;
 		$.ajax({
 			type: "POST",
 			contentType: "application/json; charset=utf-8",

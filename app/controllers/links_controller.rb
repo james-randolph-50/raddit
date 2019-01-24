@@ -17,6 +17,7 @@ class LinksController < ApplicationController
   # GET /links/1.json
 	def show
     @comments = @link.comments
+    @comment = Comment.new 
 
     respond_to do |f|
 			f.html {render :show}

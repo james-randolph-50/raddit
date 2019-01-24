@@ -56,8 +56,9 @@ function submitViaAjax() {
 			data: myJSON,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function(response) {
-				var $ul = $("div.comments_section ul");
-				$ul.append(response)
+				$("#comment_body").val("");
+				var $ul = $("div.comments_section ul")
+				$ul.append(response);
 			}
 		})
 	})

@@ -36,7 +36,6 @@ function getLinkComments() {
 
 function submitViaAjax() {
 	$("#new_comment_button").on("click", function (e) {
-		e.preventDefault();
 		
 		url = $(this.form).attr('action')
 		//debugger;
@@ -56,11 +55,13 @@ function submitViaAjax() {
 			data: myJSON,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function(response) {
+				console.log("<%= @comment.body %>")
 				$("#comment_body").val("");
 				var $ul = $("div.comments_section ul")
 				$ul.append(response);
 			}
 		})
+		e.preventDefault();
 	})
 };
 

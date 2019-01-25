@@ -55,8 +55,8 @@ function submitViaAjax() {
 			data: myJSON,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function(response) {
-				console.log("<%= @comment.body %>")
-				$("#comment_body").val("");
+				textToUpload = $("#comment_body").val("");
+				debugger;
 				var $ul = $("div.comments_section ul")
 				$ul.append(response);
 			}

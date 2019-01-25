@@ -55,10 +55,10 @@ function submitViaAjax() {
 			data: myJSON,
 			// headers: { 'Content-Type': 'application/json' },
 			success: function(response) {
-				textToUpload = $("#comment_body").val("");
-				debugger;
+				//textToUpload = $("#comment_body").val("");
+				textToUpload = document.getElementById("comment_body").value;		
 				var $ul = $("div.comments_section ul")
-				$ul.append(response);
+				$ul.append('<li>' + textToUpload + '</li>');
 			}
 		})
 		e.preventDefault();

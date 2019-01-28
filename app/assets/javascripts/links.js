@@ -59,6 +59,7 @@ function submitViaAjax() {
 				textToUpload = document.getElementById("comment_body").value;		
 				var $ul = $("div.comments_section ul")
 				$ul.append('<li>' + textToUpload + '</li>');
+				$('#comment_body').val('');
 			}
 		})
 		e.preventDefault();

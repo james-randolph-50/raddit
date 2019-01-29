@@ -2,6 +2,7 @@ $(function () {
 	console.log('links.js loaded ...');
 	listenForGetLink();
 	submitViaAjax()
+	sortComments()
 	// getLinkComments();
 })
 
@@ -58,7 +59,7 @@ function submitViaAjax() {
 				//textToUpload = $("#comment_body").val("");
 				textToUpload = document.getElementById("comment_body").value;		
 				var $ul = $("div.comments_section ul")
-				$ul.append('<li>' + textToUpload + '</li>');
+				$ul.append('<li>' + response.body + '</li>');
 				$('#comment_body').val('');
 			}
 		})
@@ -66,28 +67,19 @@ function submitViaAjax() {
 	})
 };
 
-// Other approach to submitting comments via AJAX
-
-//  $(function(){
-//    $("#new_comment_button").on("click", function(e){
-// 	   e.preventDefault();
-
-// 	url = $(this.form).attr('action')
-// 	debugger;
-//      $.ajax({
-//        type: POST,
-//        url: url,
-//        data: $(this).serialize();,
-//        success: function(response){
-//          $("#comment_body").val("");
-//          var $ul = $("div.comments_section ul")
-//          $ul.append(response);
-//        }
-// 	 });
-	 
-//    })
-//  });
-
+function sortComments() {
+	$("#sort_comments").on("click", function (e) {
+		e.preventDefault();
+		var id = this.dataset.linkid
+		fetch(`/links/${id}/comments.json`)
+		  .then(r => r.json())
+		  .then(comments => {
+	 		comments.sort(function (a, b) { 
+				return a.body - b.body;
+			 });
+		  })
+	});
+}
 
 // Show a User's Links
 

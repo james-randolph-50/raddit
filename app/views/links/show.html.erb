@@ -35,8 +35,7 @@
 </h3>
 
 <div class="comments_section">
-   <%= render 'comments/comments' %> -->
-  <!-- <%= render partial: 'comments/comment', collections: @comments %> -->
+   <%= render 'comments/comments' %>
 </div>
 
 <%= simple_form_for [@link, Comment.new]  do |f| %>
@@ -47,13 +46,4 @@
   <%= f.submit "Add Comment", class: "btn btn-primary", id: "new_comment_button", data: { disable_with: false } %>
 <% end %>
 
-<h4>
-
-</h4>
-
-<script type="text/javascript">
-  <% @link.comments.each do |comment| %>
-    var html = "<%= render partial: "comments/comment", object: comment %>";
-    $(".comments_section").append(html)
-  <% end %>
-</script>
+<button id="sort_comments" data-linkId="<%= @link.id %>">Sort Comments</button>

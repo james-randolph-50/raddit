@@ -67,6 +67,8 @@ function submitViaAjax() {
 	})
 };
 
+//sory Comments
+
 function sortComments() {
 	$("#sort_comments").on("click", function (e) {
 		e.preventDefault();
@@ -74,12 +76,14 @@ function sortComments() {
 		fetch(`/links/${id}/comments.json`)
 		  .then(r => r.json())
 		  .then(comments => {
-	 		comments.sort(function (a, b) { 
+			  debugger;
+	 		var sortedByBody = comments.sort(function (a, b) { 
 				return a.body - b.body;
-			 });
-		  })
-	});
-}
+			})
+			console.log(sortedByBody);
+	})
+})
+};
 
 // Show a User's Links
 
@@ -134,4 +138,4 @@ Link.prototype.formatHtml = function () {
 			<button class='load_comments' id=${this.id}>Show comments</button><br><hr>
 		</div>
 	`)
-}
+};

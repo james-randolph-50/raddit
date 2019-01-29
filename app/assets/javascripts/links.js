@@ -67,7 +67,7 @@ function submitViaAjax() {
 	})
 };
 
-//sory Comments
+// Sort Comments
 
 function sortComments() {
 	$("#sort_comments").on("click", function (e) {
@@ -75,15 +75,12 @@ function sortComments() {
 		var id = this.dataset.linkid
 		fetch(`/links/${id}/comments.json`)
 		  .then(r => r.json())
-		  .then(comments => {
-			  debugger;
-	 		var sortedByBody = comments.sort(function (a, b) { 
-				return a.body - b.body;
-			})
-			console.log(sortedByBody);
-	})
-})
-};
+		  .then(comments => comments.sort(function(a, b) {
+				 return a.body - b.body;
+			 })
+			)
+		console.log(comments);
+	});
 
 // Show a User's Links
 
@@ -99,7 +96,7 @@ $(function () {
 			});
 		})
 		e.preventDefault();
-	})
+	});
 });
 
 

@@ -72,13 +72,19 @@ function submitViaAjax() {
 function sortComments() {
 	$("#sort_comments").on("click", function (e) {
 		e.preventDefault();
-	//	var id = this.dataset.linkid
 		var buttonData = document.getElementById("sort_comments").dataset.linkid
+
 		fetch(`/links/${buttonData}/comments.json`)
 		  .then(r => r.json())
 		  .then(comments => {
-			  comments.sort(({body: a}, {body: b}) => a.localeCompare(b))
+			const sortedComments = comments.sort(({body: a}, {body: b}) => a.localeCompare(b))
+			sortedComments.forEach(comment => {
+				const sortedList = new CommentObject(comment)
+				var $ul = $("div.comments_section ul")
+				$ul.append(sortedList);
 			})
+			//document.getElementsByClassName("comments_section").innerHTML = dad
+		  })
 		  })
 		}
 

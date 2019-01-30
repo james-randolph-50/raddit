@@ -75,11 +75,10 @@ function sortComments() {
 	//	var id = this.dataset.linkid
 		var buttonData = document.getElementById("sort_comments").dataset.linkid
 		fetch(`/links/${buttonData}/comments.json`)
-		  .then(function(r) {
-			  return r.json();
-		  }).then(function(comments) {
-			 comments.sort(({body: a}, {body: b}) => a.localeCompare(b))
-		  	});
+		  .then(r => r.json())
+		  .then(comments => {
+			  comments.sort(({body: a}, {body: b}) => a.localeCompare(b))
+			})
 		  })
 		}
 

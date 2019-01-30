@@ -78,19 +78,17 @@ function sortComments() {
 		  .then(r => r.json())
 		  .then(comments => {
 			const sortedComments = comments.sort(({body: a}, {body: b}) => a.localeCompare(b))
-			for (var body in sortedComments) {
-				if (sortedComments.hasOwnProperty(body)) {
-					console.log(body)
-				}
-			}
-			
-			// sortedComments.forEach(comment => {
+				
+			var $ul = $("div.comments_section ul")
 
-			// 	var $ul = $("div.comments_section ul")
-			// 	$ul.append(sortedList);
-			// })
-			//document.getElementsByClassName("comments_section").innerHTML = dad
-		  })
+				for(const comment of sortedComments) {
+					var $li = $('<li>');
+					$li.text(comment.body);
+
+					$ul.val('');
+					$ul.append($li)
+				}
+			})
 		  })
 		}
 

@@ -1,9 +1,9 @@
 $(function () {
-	console.log('links.js loaded ...');
+	console.log('links.js loaded...');
 	listenForGetLink();
 	submitViaAjax()
 	sortComments()
-	// getLinkComments();
+	getLinkComments();
 })
 
 // Show comments on click
@@ -72,15 +72,15 @@ function submitViaAjax() {
 function sortComments() {
 	$("#sort_comments").on("click", function (e) {
 		e.preventDefault();
-		var id = this.dataset.linkid
-		fetch(`/links/${id}/comments.json`)
+	//	var id = this.dataset.linkid
+		var buttonData = document.getElementById("sort_comments").dataset.linkid
+		fetch(`/links/${buttonData}/comments.json`)
 		  .then(r => r.json())
-		  .then(comments => comments.sort(function(a, b) {
-				 return a.body - b.body;
-			 })
-			)
-		console.log(comments);
-	});
+		  .then(comments =>
+			 comments.sort(({body: a}, {body: b}) => a.localeCompare(b))
+			  );
+		  })
+		}
 
 // Show a User's Links
 

@@ -74,19 +74,19 @@ function sortComments() {
 		e.preventDefault();
 		var buttonData = document.getElementById("sort_comments").dataset.linkid
 
+
 		fetch(`/links/${buttonData}/comments.json`)
 		  .then(r => r.json())
 		  .then(comments => {
 			const sortedComments = comments.sort(({body: a}, {body: b}) => a.localeCompare(b))
 				
 			var $ul = $("div.comments_section ul")
+			$ul.empty()
 
 				for(const comment of sortedComments) {
 					var $li = $('<li>');
 					$li.text(comment.body);
-
-					$ul.val('');
-					$ul.append($li)
+					$ul.append($li);
 				}
 			})
 		  })
